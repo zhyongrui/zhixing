@@ -2,6 +2,7 @@ import SwiftUI
 
 struct RootView: View {
     @Environment(AccountSession.self) private var session
+    @AppStorage(WelcomeFlowPersistence.completedKey) private var hasCompletedWelcome = false
 
     var body: some View {
         Group {
@@ -20,11 +21,23 @@ struct RootView: View {
                             .foregroundStyle(.secondary)
                     }
                 }
-            } else if session.isSignedIn {
-                MapScreen()
-                    .tint(BrandTheme.pine)
             } else {
-                RegistrationView()
+                ZStack {
+                    if session.isSignedIn {
+                        MapScreen()
+                            .tint(BrandTheme.pine)
+                    } else {
+                        RegistrationView()
+                    }
+
+                    if !hasCompletedWelcome {
+                        WelcomeVideoFeed {
+                            hasCompletedWelcome = true
+                        }
+                        .transition(.identity)
+                        .zIndex(1)
+                    }
+                }
             }
         }
         .task { await session.restore() }

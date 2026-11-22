@@ -18,6 +18,7 @@ apps/
 - 邮箱注册、登录和密码找回。
 
 iOS 构建步骤见 [apps/ios/README.md](apps/ios/README.md)。
+哔哩哔哩与抖音视频的核实、入库和复查流程见 [docs/video-ingestion.md](docs/video-ingestion.md)。
 
 ## 多端约定
 

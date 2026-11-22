@@ -27,6 +27,10 @@
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>snssdk1128</string>
+	</array>
 	<key>UILaunchScreen</key>
 	<dict/>
 	<key>UIAppFonts</key>

@@ -10,6 +10,8 @@
 		14FD0875B0B2B022BB60ED62 /* PlaceVideosSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = "TEMP_6A0665BA-D963-4E24-ACC4-68A3DA7B823D" /* PlaceVideosSheet.swift */; };
 		39D7BFC9529F8D27227BED90 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = "TEMP_4717E9B7-93F2-4BB9-81E9-58CDBE20C7B9" /* Models.swift */; };
 		3BB7D4FF88EF94124F63831B /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 78B35E494C584978492075B3 /* Fonts */; };
+		4E6F8A0B3D2147A1B9C2D001 /* OnboardingVideos in Resources */ = {isa = PBXBuildFile; fileRef = 4E6F8A0B3D2147A1B9C2D002 /* OnboardingVideos */; };
+		4E6F8A0B3D2147A1B9C2D003 /* WelcomeVideoFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6F8A0B3D2147A1B9C2D004 /* WelcomeVideoFeed.swift */; };
 		5800F335742D9BA603F17509 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = "TEMP_6CC0E392-D050-4BB5-85AE-CCF240084A06" /* RegistrationView.swift */; };
 		666FA5312BA68F4AD3D39248 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = "TEMP_2A2A9000-2D82-4E5E-85F0-B9AC03153862" /* APIClient.swift */; };
 		80D0925992B42D6C6F944255 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = "TEMP_7A85C22F-148F-4228-B626-15ECFA5D5B9A" /* Assets.xcassets */; };
@@ -22,6 +24,8 @@
 
 /* Begin PBXFileReference section */
 		78B35E494C584978492075B3 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = SOURCE_ROOT; };
+		4E6F8A0B3D2147A1B9C2D002 /* OnboardingVideos */ = {isa = PBXFileReference; lastKnownFileType = folder; path = OnboardingVideos; sourceTree = "<group>"; };
+		4E6F8A0B3D2147A1B9C2D004 /* WelcomeVideoFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeVideoFeed.swift; sourceTree = "<group>"; };
 		BDA150FF007943A0182E42D3 /* Zhixing.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Zhixing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		"TEMP_03E54CE0-9C88-43FD-AE5F-6E9D8A1CF306" /* MapScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreen.swift; sourceTree = "<group>"; };
 		"TEMP_2A2A9000-2D82-4E5E-85F0-B9AC03153862" /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
@@ -48,6 +52,7 @@
 			isa = PBXGroup;
 			children = (
 				78B35E494C584978492075B3 /* Fonts */,
+				4E6F8A0B3D2147A1B9C2D002 /* OnboardingVideos */,
 				206D4F76DE24B8FAA8BAA130 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -65,6 +70,7 @@
 				"TEMP_6A0665BA-D963-4E24-ACC4-68A3DA7B823D" /* PlaceVideosSheet.swift */,
 				"TEMP_DF8AF371-8DD8-4F43-A8C8-4B177E89ECF7" /* ZhixingApp.swift */,
 				"TEMP_764B904F-7375-400C-8F20-6BB0E7546FF4" /* BrandTheme.swift */,
+				4E6F8A0B3D2147A1B9C2D004 /* WelcomeVideoFeed.swift */,
 			);
 			name = .;
 			path = .;
@@ -128,6 +134,7 @@
 			files = (
 				80D0925992B42D6C6F944255 /* Assets.xcassets in Resources */,
 				3BB7D4FF88EF94124F63831B /* Fonts in Resources */,
+				4E6F8A0B3D2147A1B9C2D001 /* OnboardingVideos in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +154,7 @@
 				5800F335742D9BA603F17509 /* RegistrationView.swift in Sources */,
 				A6CC0E5893FF03084C6104D3 /* RootView.swift in Sources */,
 				B97E1F6034982E69AED8D578 /* ZhixingApp.swift in Sources */,
+				4E6F8A0B3D2147A1B9C2D003 /* WelcomeVideoFeed.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

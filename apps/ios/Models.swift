@@ -44,11 +44,13 @@ struct PlaceVideoLink: Decodable, Identifiable {
     let url: String
     let sortOrder: Int
     let tag: String?
+    let creatorName: String?
+    let thumbnailUrl: String?
 
     var platformName: String {
         switch platform {
         case "XIAOHONGSHU": "小红书"
-        case "BILIBILI": "B 站"
+        case "BILIBILI": "哔哩哔哩"
         case "DOUYIN": "抖音"
         case "WEIBO": "微博"
         default: "网页"
@@ -61,5 +63,20 @@ struct PlaceVideoLink: Decodable, Identifiable {
             return nil
         }
         return destination
+    }
+
+    var douyinAppDestination: URL? {
+        guard platform == "DOUYIN",
+              let destination,
+              let host = destination.host?.lowercased(),
+              host == "douyin.com" || host.hasSuffix(".douyin.com"),
+              let videoIndex = destination.pathComponents.firstIndex(of: "video"),
+              destination.pathComponents.indices.contains(videoIndex + 1) else {
+            return nil
+        }
+
+        let videoID = destination.pathComponents[videoIndex + 1]
+        guard videoID.range(of: #"^\d+$"#, options: .regularExpression) != nil else { return nil }
+        return URL(string: "snssdk1128://aweme/detail/\(videoID)")
     }
 }

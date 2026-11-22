@@ -24,9 +24,13 @@ targets:
           - README.md
           - Info.plist
           - .gitignore
+          - OnboardingVideos
           - Zhixing.xcodeproj
           - Fonts
       - path: Fonts
+        type: folder
+        buildPhase: resources
+      - path: OnboardingVideos
         type: folder
         buildPhase: resources
     settings:
@@ -48,6 +52,8 @@ targets:
         APIBase: $(APP_API_BASE)
         NSAppTransportSecurity:
           NSAllowsLocalNetworking: true
+        LSApplicationQueriesSchemes:
+          - snssdk1128
 schemes:
   Zhixing:
     build:
