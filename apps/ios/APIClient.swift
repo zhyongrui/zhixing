@@ -64,6 +64,7 @@ enum APIError: LocalizedError {
         switch self {
         case .badResponse(401): "验证码错误或已过期，请重新获取。"
         case .badResponse(429): "操作太频繁，请稍后再试。"
+        case .badResponse(409): "这个邮箱已经注册，请直接登录。"
         case .badResponse: "服务暂时无法响应，请检查网络后重试。"
         }
     }

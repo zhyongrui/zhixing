@@ -16,6 +16,8 @@ open Zhixing.xcodeproj
 
 真机或发布构建时，将 `APP_API_BASE` 设置为可从设备访问的 HTTPS API 地址。例如：
 
+真机安装前的签名、地址验证、登录态重置和故障排查步骤见 [iOS 真机安装与 API 配置](../../docs/ios-device-install.md)。
+
 ```sh
 xcodebuild -project Zhixing.xcodeproj -scheme Zhixing \
   -destination 'generic/platform=iOS' APP_API_BASE=https://你的-api-域名 build

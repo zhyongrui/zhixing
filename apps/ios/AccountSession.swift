@@ -1,10 +1,13 @@
 import Foundation
 import Observation
 import Security
+import UIKit
 
 struct AccountUser: Decodable {
     let id: String
     let nickname: String
+    let avatarSeed: String?
+    let avatarUrl: String?
 }
 
 private struct AuthResponse: Decodable {
@@ -14,6 +17,11 @@ private struct AuthResponse: Decodable {
 
 private struct EmailBody: Encodable {
     let email: String
+}
+
+private struct RegistrationEmailBody: Encodable {
+    let email: String
+    let intent = "REGISTER"
 }
 
 private struct VerifyBody: Encodable {
@@ -39,6 +47,14 @@ final class AccountSession {
 
     func restore() async {
         defer { restoring = false }
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("--reset-session") {
+            try? Self.deleteToken()
+            for key in [WelcomeFlowPersistence.completedKey, WelcomeFlowPersistence.orderKey, WelcomeFlowPersistence.pageKey] {
+                UserDefaults.standard.removeObject(forKey: key)
+            }
+        }
+        #endif
         guard let savedToken = try? Self.readToken() else { return }
         token = savedToken
         do {
@@ -52,7 +68,7 @@ final class AccountSession {
     }
 
     func sendRegistrationCode(email: String) async throws {
-        let _: SendResponse = try await APIClient.post("/auth/email/send", body: EmailBody(email: email))
+        let _: SendResponse = try await APIClient.post("/auth/email/send", body: RegistrationEmailBody(email: email))
     }
 
     func registerOrSignIn(email: String, code: String) async throws {
@@ -63,10 +79,36 @@ final class AccountSession {
         user = response.user
     }
 
-    private struct RegisterBody: Encodable { let email: String; let code: String; let password: String }
-    func register(email: String, code: String, password: String) async throws {
+    private struct RegisterBody: Encodable {
+        let email: String
+        let code: String
+        let password: String
+        let nickname: String
+        let avatarSeed: String
+        let avatarImage: String?
+    }
+    func register(email: String, code: String, password: String, nickname: String, avatarSeed: String, avatarPhoto: UIImage?) async throws {
+        let imageData = avatarPhoto.flatMap { image in
+            let side: CGFloat = 512
+            let renderer = UIGraphicsImageRenderer(size: CGSize(width: side, height: side))
+            let square = renderer.image { _ in
+                let source = image.size
+                let scale = max(side / source.width, side / source.height)
+                let rect = CGRect(x: (side - source.width * scale) / 2, y: (side - source.height * scale) / 2,
+                                  width: source.width * scale, height: source.height * scale)
+                image.draw(in: rect)
+            }
+            return square.jpegData(compressionQuality: 0.78)
+        }
         let response: AuthResponse = try await APIClient.post(
-            "/auth/email/register", body: RegisterBody(email: email, code: code, password: password))
+            "/auth/email/register",
+            body: RegisterBody(
+                email: email, code: code, password: password, nickname: nickname,
+                avatarSeed: avatarSeed,
+                avatarImage: imageData.map { "data:image/jpeg;base64," + $0.base64EncodedString() }
+            ),
+            timeout: 45
+        )
         try Self.saveToken(response.token)
         token = response.token
         user = response.user

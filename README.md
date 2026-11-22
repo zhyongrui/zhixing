@@ -19,6 +19,7 @@ apps/
 
 iOS 构建步骤见 [apps/ios/README.md](apps/ios/README.md)。
 哔哩哔哩与抖音视频的核实、入库和复查流程见 [docs/video-ingestion.md](docs/video-ingestion.md)。
+真机签名、API 地址、登录态重置与安装检查见 [docs/ios-device-install.md](docs/ios-device-install.md)。
 
 ## 多端约定
 
